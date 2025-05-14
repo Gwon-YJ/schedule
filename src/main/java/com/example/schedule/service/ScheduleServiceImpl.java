@@ -1,5 +1,6 @@
 package com.example.schedule.service;
 
+import com.example.schedule.Dto.CheckDto;
 import com.example.schedule.Dto.ScheduleRequestDto;
 import com.example.schedule.Dto.ScheduleResponseDto;
 import com.example.schedule.entity.Schedule;
@@ -94,9 +95,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
     @Override
-    public void deleteSchedule(Long id) {
+    public void deleteSchedule(Long id, String password) {
         // 일정 조회
-        int deleteRow = scheduleRepository.deleteSchedule(id);
+        int deleteRow = scheduleRepository.deleteSchedule(id, password);
 
         // 삭제된 row가 0개 라면
         if (deleteRow == 0) {

@@ -2,7 +2,6 @@ package com.example.schedule.service;
 
 import com.example.schedule.Dto.ScheduleRequestDto;
 import com.example.schedule.Dto.ScheduleResponseDto;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,11 +14,9 @@ public interface ScheduleService {
 
     ScheduleResponseDto findScheduleById(Long id);
 
-    @Transactional
     ScheduleResponseDto updateSchedule(Long id, String title, String contents, String author);
 
-    @Transactional
     ScheduleResponseDto updateTitle(Long id, String title, String contents);
 
-    void deleteSchedule(Long id);
+    void deleteSchedule(Long id, String password);
 }

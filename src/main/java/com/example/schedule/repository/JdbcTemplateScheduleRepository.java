@@ -78,7 +78,7 @@ public class JdbcTemplateScheduleRepository implements ScheduleRepository {
     }
 
     @Override
-    public int deleteSchedule(Long id) {
+    public int deleteSchedule(Long id, String password) {
         // 쿼리의 영향을 받은 row 수를 int로 반환한다.
         return jdbcTemplate.update("delete from schedule where id = ?", id);
     }
