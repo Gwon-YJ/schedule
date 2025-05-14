@@ -48,16 +48,17 @@ public class ScheduleController {
             @PathVariable Long id,
             @RequestBody ScheduleRequestDto dto
     ) {
-        return new ResponseEntity<>(scheduleService.updateSchedule(id, dto.getContents(), dto.getAuthor()), HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.updateSchedule(id, dto.getTitle(), dto.getContents(), dto.getAuthor()), HttpStatus.OK);
     }
 
 
+    // 일정 제목 수정
     @PatchMapping("/{id}")
     public ResponseEntity<ScheduleResponseDto> updateTitle(
             @PathVariable Long id,
             @RequestBody ScheduleRequestDto dto
     ) {
-        return new ResponseEntity<>(scheduleService.updateSchedule(id, dto.getTitle(), dto.getAuthor()), HttpStatus.OK);
+        return new ResponseEntity<>(scheduleService.updateTitle(id, dto.getTitle(), dto.getContents()), HttpStatus.OK);
     }
 
     // 일정 삭제

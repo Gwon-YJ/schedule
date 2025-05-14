@@ -1,16 +1,15 @@
 package com.example.schedule.entity;
 
-import com.example.schedule.Dto.ScheduleRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
 public class Schedule {
-    @Setter
+
+    // 속성
     private Long id;               // 고유 식별자
     private String title;          // 할일
     private String author;         // 작성자명
@@ -30,24 +29,23 @@ public class Schedule {
         this.updatedAt = createdAt;  // 최초 작성 시, 수정일은 작성일과 동일
     }
 
-
+    // 기능
     // 수정일 갱신 공통 메서드
     private void updateUpdatedAt() {
         this.updatedAt = LocalDateTime.now();
     }
 
     // 전체 일정 수정
-    public void update(ScheduleRequestDto dto) {
+    public void update(String contents, String author) {
         // contents, author, password 값 모두 수정
-        this.contents = dto.getContents();
-        this.author = dto.getAuthor();
-        this.password = dto.getPassword();
+        this.contents = contents;
+        this.author = author;
+
         updateUpdatedAt();                 // 수정일 갱신
     }
 
-    public Schedule(String title, String author) {
+    public void updateTitle(String title) {
         this.title = title;
-        this.author = author;
     }
 
 

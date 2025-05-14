@@ -14,11 +14,12 @@ public interface ScheduleRepository {
 
     Optional<Schedule> findScheduleById(Long id);
 
-    Schedule findMemoByIdOrElseThrow(Long id);
+    Schedule findScheduleByIdOrElseThrow(Long id);
 
-    int updateSchedule(Long id, String contents, String author, String password);
+    int updateSchedule(Long id, String title, String contents, String author);
 
-    int updateTitle(Long id, String title, String password);
+    int updateTitle(Long id, String title);
+
 
     int deleteSchedule(Long id);
 }

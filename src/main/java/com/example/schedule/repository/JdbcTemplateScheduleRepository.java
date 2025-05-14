@@ -58,21 +58,23 @@ public class JdbcTemplateScheduleRepository implements ScheduleRepository {
     }
 
     @Override
-    public Schedule findMemoByIdOrElseThrow(Long id) {
+    public Schedule findScheduleByIdOrElseThrow(Long id) {
         List<Schedule> result = jdbcTemplate.query("select * from schedule where id = ?", scheduleRowMapperV2(), id);
 
         return result.stream().findAny().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id));
     }
 
-    @Override
-    public int updateSchedule(Long id, String contents, String author, String password) {
-        // 쿼리의 영향을 받은 row 수를 int로 반환한다.
-        return jdbcTemplate.update("update schedule set contents = ?, author = ?  where id = ? AND password =?", contents, author, id, password);
-    }
 
     @Override
-    public int updateTitle(Long id, String title, String password) {
-        return jdbcTemplate.update("update schedule set title = ? where id = ? AND password =?", title, id, password);
+    public int updateSchedule(Long id, String title, String contents, String author) {
+        // 쿼리의 영향을 받은 row 수를 int로 반환한다.
+        return jdbcTemplate.update("update schedule set title = ?, contents = ?, author = ?  where id = ? ", title,contents, author, id);
+    }
+
+
+    @Override
+    public int  updateTitle(Long id, String title) {
+        return jdbcTemplate.update("update schedule set title = ? where id = ?", title, id);
     }
 
     @Override
